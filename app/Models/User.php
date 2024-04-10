@@ -47,10 +47,8 @@ class User extends Authenticatable
         ];
     }
 
-    //RELACION UNO A MUCHOS
     public function images()
     {
         return $this->hasMany(Image::class);
-        // return $this->hasMany('App\Comment');
     }
 }

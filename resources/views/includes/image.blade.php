@@ -10,6 +10,11 @@
                     <img src="{{ route('profile.avatar', ['filename' => $image->user->image]) }}" alt="Profile Photo"
                         class="h-8 w-8 rounded-full">
                 </div>
+            @else
+                <div x-show="defaultAvatarPreview">
+                    <img src="{{ asset('img/defaultprofile.png') }}" alt="Default Photo"
+                        class="mt-2 max-w-xs rounded-full">
+                </div>
             @endif
 
             <div>
