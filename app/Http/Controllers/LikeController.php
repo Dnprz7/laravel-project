@@ -28,21 +28,21 @@ class LikeController extends Controller
 
         if ($isser_like == 0) {
             $like = new Like();
-            $like->image_id = $image_id;
             $like->user_id = $user->id;
+            $like->image_id = (int) $image_id;
 
             $like->save();
 
             return response()->json([
-                "like" => $like
+                "like" => $like,
+                'count' => count($like->image->likes),
+                'status' => 'undo_like',
             ]);
         } else {
             return response()->json([
                 'status' => 'like-exist'
             ]);
         }
-
-
     }
 
     public function undo_like($image_id)
@@ -57,7 +57,8 @@ class LikeController extends Controller
 
             return response()->json([
                 "like" => $like,
-                'status' => 'dislike'
+                'count' => count($like->image->likes),
+                'status' => 'undo_like'
             ]);
         } else {
             return response()->json([
@@ -65,4 +66,5 @@ class LikeController extends Controller
             ]);
         }
     }
+
 }

@@ -40,9 +40,7 @@
 
     {{-- INTERACTON --}}
     <div class="pl-2 pt-2 flex items-center">
-
-
-        <div class="pr-4">
+        <div class="pr-2">
             {{-- IF USER LIKE --}}
             <?php $user_like = false; ?>
 
@@ -53,16 +51,16 @@
             @endforeach
 
             <div class="flex items-center">
-                <div class="pr-2">
+                <div class="pr-1">
                     @if ($user_like)
-                        <img src="{{ asset('arrowUpOn.png') }}" data-id="{{ $image->id }}" alt="Likes"
+                        <img src="{{ asset('img/arrowUpOn.png') }}" data-id="{{ $image->id }}" alt="Likes"
                             class="btn-like" style="width: 25px">
                     @else
-                        <img src="{{ asset('img/arrowUpOff.png') }}" data-id="{{ $image->id }}" alt="Likes"
+                        <img src="{{ asset('img/arrowUpOff.png') }}" data-id="{{ $image->id }}" alt="Undolike"
                             class="btn-undo_like" style="width: 25px">
                     @endif
                 </div>
-                <p><strong>{{ count($image->likes) }}</strong></p>
+                <strong class="count-likes"> {{ count($image->likes) }} </strong>
             </div>
         </div>
 
@@ -71,7 +69,7 @@
             <?php $user_dislike = false; ?>
 
             @foreach ($image->dislikes as $dislike)
-                @if ($like->user->id == Auth::user()->id)
+                @if ($dislike->user->id == Auth::user()->id)
                     <?php $user_dislike = true; ?>
                 @endif
             @endforeach
@@ -86,7 +84,7 @@
                             alt="undo_Dislikes" class="btn-undo_dislike" style="width: 25px">
                     @endif
                 </div>
-                <p><strong>{{ count($image->likes) }}</strong></p>
+                <p><strong>{{ count($image->dislikes) }}</strong></p>
             </div>
         </div>
 
@@ -95,10 +93,7 @@
                 <img src="{{ asset('img/comment.png') }}" alt="Comment" class="img-fluid" style="width: 25px">
             </a>
         </div>
-
     </div>
-
-
 
 
     {{-- COMMENT --}}

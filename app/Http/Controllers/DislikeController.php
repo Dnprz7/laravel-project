@@ -29,8 +29,8 @@ class DislikeController extends Controller
 
         if ($isser_dislike == 0) {
             $dislike = new Dislike();
-            $dislike->image_id = $image_id;
             $dislike->user_id = $user->id;
+            $dislike->image_id = (int) $image_id;
 
             $dislike->save();
 

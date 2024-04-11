@@ -117,7 +117,7 @@
                 {{-- INTERACTON --}}
                 <div class="pl-2 pt-2 flex items-center">
 
-                    <div class="pr-4">
+                    <div class="pr-2">
                         {{-- IF USER LIKE --}}
                         <?php $user_like = false; ?>
 
@@ -128,7 +128,7 @@
                         @endforeach
 
                         <div class="flex items-center">
-                            <div class="pr-2">
+                            <div class="pr-1">
                                 @if ($user_like)
                                     <img src="{{ asset('arrowUpOn.png') }}" data-id="{{ $image->id }}"
                                         alt="Likes" class="btn-like" style="width: 25px">
@@ -161,11 +161,10 @@
                                         alt="Likes" class="btn-undo_dislike" style="width: 25px">
                                 @endif
                             </div>
-                            <p><strong>{{ count($image->likes) }}</strong></p>
+                            <p><strong>{{ count($image->dislikes) }}</strong></p>
                         </div>
                     </div>
                 </div>
-
 
                 {{-- COMMENT --}}
                 <div class="pl-2 py-2">
