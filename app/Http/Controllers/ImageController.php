@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Response;
 use App\Models\Comment;
 use App\Models\Like;
+use App\Models\Dislike;
 
 class ImageController extends Controller
 {
@@ -84,6 +85,13 @@ class ImageController extends Controller
                     $like->delete();
                 }
             }
+
+            //DELETE DISLIKES
+            // if ($dislikes && count($dislikes) > 0) {
+            //     foreach ($dislikes as $dislike) {
+            //         $dislike->delete();
+            //     }
+            // }
 
             //DELETE IMAGES ON STORAGE
             Storage::disk('images')->delete($image->image_path);

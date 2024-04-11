@@ -21,6 +21,11 @@ class Image extends Model
         return $this->hasMany(Like::class);
     }
 
+    public function dislikes()
+    {
+        return $this->hasMany(Dislike::class);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');

@@ -28,7 +28,7 @@
                 x-on:change="imagePreview = URL.createObjectURL($event.target.files[0])" accept="image/*">
             <div x-show="imagePreview">
                 <h3 class="text-lg font-small text-gray-900 ">
-                    {{ __('New Photo') }}
+                    {{ __('New Photo:') }}
                 </h3>
                 <img :src="imagePreview" alt="Preview" class="mt-2 max-w-xs rounded-full">
             </div>
