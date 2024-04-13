@@ -33,19 +33,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/image/edit/{id}', [ImageController::class, 'edit'])->name('image.edit');
     Route::post('/image/update', [ImageController::class, 'update'])->name('image.update');
 
-
     Route::post('/comment/save', [CommentController::class, 'save'])->middleware(['verified'])->name('comment.save');
     Route::get('/comment/delete/{id}', [CommentController::class, 'delete'])->middleware(['verified'])->name('comment.delete');
 
-
-    Route::get('/like/{id}', [LikeController::class, 'like'])->name('like.save');
-    Route::get('/undo_like/{id}', [LikeController::class, 'undo_like'])->name('like.delete');
     Route::get('/likes', [LikeController::class, 'index'])->name('likes.index');
+    Route::get('/toggle_like/{id}', [LikeController::class, 'toggle_like'])->name('toggle_like.save');
 
-    Route::get('/dislike/{id}', [DislikeController::class, 'dislike'])->name('dislike.save');
-    Route::get('/undo_dislike/{id}', [DislikeController::class, 'undo_dislike'])->name('dislike.delete');
     Route::get('/dislikes', [DislikeController::class, 'index'])->name('dislike.index');
-
+    Route::get('/toggle_dislike/{id}', [DislikeController::class, 'toggle_dislike'])->name('toggle_dislike.save');
 
 });
 

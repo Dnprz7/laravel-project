@@ -35,7 +35,9 @@ class DislikeController extends Controller
             $dislike->save();
 
             return response()->json([
-                "dislike" => $dislike
+                "dislike" => $dislike,
+                'count' => count($dislike->image->dislikes),
+                'status' => 'undo_dislike'
             ]);
         } else {
             return response()->json([
@@ -58,6 +60,7 @@ class DislikeController extends Controller
 
             return response()->json([
                 "dislike" => $dislike,
+                'count' => count($dislike->image->dislikes),
                 'status' => 'undo_dislike'
             ]);
         } else {
@@ -65,5 +68,38 @@ class DislikeController extends Controller
                 'status' => 'dislike-not-exist'
             ]);
         }
+    }
+
+    public function toggle_dislike($image_id)
+    {
+        $user = Auth::user();
+
+        $dislike = Dislike::where("user_id", $user->id)->where("image_id", $image_id)->first();
+
+        if ($dislike) {
+            $dislike->delete();
+
+            return response()->json([
+                "dislike" => $dislike,
+                'count' => count($dislike->image->dislikes),
+                'status' => 'undo_dislike'
+            ]);
+        } else {
+            $dislike = new dislike();
+            $dislike->user_id = $user->id;
+            $dislike->image_id = (int) $image_id;
+            $dislike->save();
+
+
+            //CONDICION SI YA EXISTE DISdislike
+            // $disdislike->delete();
+
+            return response()->json([
+                "dislike" => $dislike,
+                'count' => count($dislike->image->dislikes),
+                'status' => 'dislike'
+            ]);
+        }
+
     }
 }

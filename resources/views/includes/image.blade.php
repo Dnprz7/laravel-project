@@ -54,15 +54,16 @@
                 <div class="pr-1">
                     @if ($user_like)
                         <img src="{{ asset('img/arrowUpOn.png') }}" data-id="{{ $image->id }}" alt="Likes"
-                            class="btn-like" style="width: 25px">
+                            class="btn-like like_image_{{ $image->id }}" style="width: 25px">
                     @else
                         <img src="{{ asset('img/arrowUpOff.png') }}" data-id="{{ $image->id }}" alt="Undolike"
-                            class="btn-undo_like" style="width: 25px">
+                            class="btn-like like_image_{{ $image->id }}" style="width: 25px">
                     @endif
                 </div>
-                <strong class="count-likes"> {{ count($image->likes) }} </strong>
+                <strong id='count-likes'>{{ count($image->likes) }}</strong>
             </div>
         </div>
+
 
         <div>
             {{-- IF USER DISLIKE --}}
@@ -78,13 +79,14 @@
                 <div class="pr-2">
                     @if ($user_dislike)
                         <img src="{{ asset('img/arrowDownOn.png') }}" data-id="{{ $image->id }}" alt="Dislikes"
-                            class="btn-dislike" style="width: 25px">
+                            class="btn-dislike dislike_image_{{ $image->id }}" style="width: 25px">
                     @else
                         <img src="{{ asset('img/arrowDownOff.png') }}" data-id="{{ $image->id }}"
-                            alt="undo_Dislikes" class="btn-undo_dislike" style="width: 25px">
+                            alt="undo_Dislikes" class="btn-dislike dislike_image_{{ $image->id }}"
+                            style="width: 25px">
                     @endif
                 </div>
-                <p><strong>{{ count($image->dislikes) }}</strong></p>
+                <strong id='count-dislikes'>{{ count($image->dislikes) }}</strong>
             </div>
         </div>
 

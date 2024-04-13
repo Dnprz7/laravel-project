@@ -1,66 +1,88 @@
-var url = 'http://127.0.0.1:8000';
-window.addEventListener("load", function(){
+var url = "http://127.0.0.1:8000";
 
-	$('.btn-like').css('cursor', 'pointer');
-	$('.btn-undo_like').css('cursor', 'pointer');
+$(document).ready(function () {
+    console.log("Document loaded");
 
-	// Botón de like
-	function like(){
-		$('.btn-like').unbind('click').click(function(){
-			console.log('like');
-			$(this).addClass('btn-undo_like').removeClass('btn-like');
-			$(this).attr('src', url+'/img/arrowUpOn.png');
+    $(".btn-like, .btn-dislike").css("cursor", "pointer");
 
-            var element = $(this).parent();
-            $.ajax({
-                url: url + '/like/' + $(this).data('id'),
-                type: 'GET',
-                success: function (response) {
-                    updateCountLikes(response, element, 'like');
-                }
-            });
-			undo_like();
-		});
-	}
-	like();
+    //BTN LIKE
+    $(".btn-like").on("click", function () {
+        const image_id = $(this).data("id");
+        $.ajax({
+            url: url + "/toggle_like/" + image_id,
+            type: "GET",
+            success: function (response) {
+                updateCountLikes(response, image_id, response.status);
+            },
+        });
+    });
 
-	// Botón de undo_like
-	function undo_like(){
-		$('.btn-undo_like').unbind('click').click(function(){
-			console.log('undo_like');
-			$(this).addClass('btn-like').removeClass('btn-undo_like');
-			$(this).attr('src', url+'/img/arrowUpOff.png');
+    function updateCountLikes(response, image_id, mensaje) {
+        console.log(image_id);
 
-			$.ajax({
-				url: url+'/undo_like/'+$(this).data('id'),
-				type: 'GET',
-				success: function(response){
-					if(response.like){
-						console.log('Has dado undo_like a la publicacion');
-					}else{
-						console.log('Error al dar undo_like');
-					}
-				}
-			});
-
-			like();
-		});
-	}
-	undo_like();
-
-    function updateCountLikes(response, element, mensaje) {
-        if (response.like) {
-            //obtengo el span con la cuenta de likes gracias a su clase css
-            //Actualizo el número de likes gracias al nuevo atributo de la respuesta AJAX
-            $(element).find('.count-likes').text(response.count);
-        } else {
-            console.log('Error al dar ' + mensaje);
+        if (mensaje === "like") {
+            $(".like_image_" + image_id)
+                .addClass("btn-undo_like")
+                .removeClass("btn-like");
+            $(".like_image_" + image_id).attr(
+                "src",
+                url + "/img/arrowUpOn.png"
+            );
+        } else if (mensaje === "undo_like") {
+            $(".like_image_" + image_id)
+                .addClass("btn-like")
+                .removeClass("btn-undo_like");
+            $(".like_image_" + image_id).attr(
+                "src",
+                url + "/img/arrowUpOff.png"
+            );
         }
+        $(".like_image_" + image_id)
+            .closest(".flex")
+            .find("#count-likes")
+            .text(response.count);
     }
 
-	// BUSCADOR
-	$('#buscador').submit(function(e){
-		$(this).attr('action',url+'/gente/'+$('#buscador #search').val());
-	});
+    //BTN DISLIKE
+    $(".btn-dislike").on("click", function () {
+        const image_id = $(this).data("id");
+        $.ajax({
+            url: url + "/toggle_dislike/" + image_id,
+            type: "GET",
+            success: function (response) {
+                updateCountDislikes(response, image_id, response.status);
+            },
+        });
+    });
 
+    function updateCountDislikes(response, image_id, mensaje) {
+        console.log(image_id);
+
+        if (mensaje === "dislike") {
+            $(".dislike_image_" + image_id)
+                .addClass("btn-undo_dislike")
+                .removeClass("btn-dislike");
+            $(".dislike_image_" + image_id).attr(
+                "src",
+                url + "/img/arrowDownOn.png"
+            );
+        } else if (mensaje === "undo_dislike") {
+            $(".dislike_image_" + image_id)
+                .addClass("btn-dislike")
+                .removeClass("btn-undo_dislike");
+            $(".dislike_image_" + image_id).attr(
+                "src",
+                url + "/img/arrowDownOff.png"
+            );
+        }
+        $(".dislike_image_" + image_id)
+            .closest(".flex")
+            .find("#count-dislikes")
+            .text(response.count);
+    }
+
+    // BUSCADOR
+    $("#buscador").submit(function (e) {
+        $(this).attr("action", url + "/gente/" + $("#buscador #search").val());
+    });
 });
