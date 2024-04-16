@@ -49,7 +49,6 @@
                     <?php $user_like = true; ?>
                 @endif
             @endforeach
-
             <div class="flex items-center">
                 <div class="pr-1">
                     @if ($user_like)
@@ -76,14 +75,13 @@
             @endforeach
 
             <div class="flex items-center">
-                <div class="pr-2">
+                <div class="pr-1">
                     @if ($user_dislike)
                         <img src="{{ asset('img/arrowDownOn.png') }}" data-id="{{ $image->id }}" alt="Dislikes"
                             class="btn-dislike dislike_image_{{ $image->id }}" style="width: 25px">
                     @else
-                        <img src="{{ asset('img/arrowDownOff.png') }}" data-id="{{ $image->id }}"
-                            alt="undo_Dislikes" class="btn-dislike dislike_image_{{ $image->id }}"
-                            style="width: 25px">
+                        <img src="{{ asset('img/arrowDownOff.png') }}" data-id="{{ $image->id }}" alt="Undodislike"
+                            class="btn-dislike dislike_image_{{ $image->id }}" style="width: 25px">
                     @endif
                 </div>
                 <strong id='count-dislikes'>{{ count($image->dislikes) }}</strong>
