@@ -22,25 +22,41 @@
         {{-- MENU --}}
         <div class="bg-black md:w-1/2 p-8 flex flex-col justify-center items-center">
             <div class="bg-gray-100 p-8 rounded-xl shadow-2xl w-full h-full flex flex-col justify-between">
-                <div class="p-2 flex flex-col items-center mb-4" style="box-shadow: 0 3px 10px rgb(0,0,0,0.2);">
+                <div class="p-2 flex flex-col items-center" style="box-shadow: 0 3px 10px rgb(0,0,0,0.2);">
                     <img src="{{ asset('img/photogram2.gif') }}" alt="Logo"
                         class="pt-2 w-1/4 h-auto mb-2 md:max-h-full">
                     <h2 class="text-lg font-semibold mb-2 text-center">Photogram</h2>
                 </div>
                 <div class="flex flex-col items-center justify-center">
-                    <div class="flex flex-col items-center mb-4">
-                        <button
-                            class="border border-gray-700 w-44 bg-transparent hover:bg-gray-300 text-black font-bold py-3 px-5 rounded mb-2 transition-colors duration-300 ease-in-out">
-                            Login
-                        </button>
-                        <button
-                            class="border border-gray-700 w-44 bg-transparent hover:bg-gray-300 text-black font-bold py-3 px-5 rounded mb-2 transition-colors duration-300 ease-in-out">
-                            Register
-                        </button>
+                    <div class="flex flex-col items-center justify-center mb-4">
+                        @if (Route::has('login'))
+                            @auth
+                                <a href="{{ url('/dashboard') }}"
+                                    class="button border border-gray-700 w-44 bg-transparent hover:bg-gray-300 text-black font-bold py-3 px-5 rounded mb-2 transition-colors duration-300 ease-in-out flex justify-center">Dashboard</a>
+                                <div class="text-center"> <!-- Nuevo contenedor para centrar el texto -->
+                                    <p class="text-sm">You are already logged enter to join into the Photogram experience
+                                    </p>
+                                </div>
+                            @else
+                                <a href="{{ route('login') }}"
+                                    class="button border border-gray-700 w-44 bg-transparent hover:bg-gray-300 text-black font-bold py-3 px-5 rounded mb-2 transition-colors duration-300 ease-in-out flex justify-center">Log
+                                    in</a>
+
+                                @if (Route::has('register'))
+                                    <a href="{{ route('register') }}"
+                                        class="button border border-gray-700 w-44 bg-transparent hover:bg-gray-300 text-black font-bold py-3 px-5 rounded mb-2 transition-colors duration-300 ease-in-out flex justify-center">
+                                        Register
+                                    </a>
+                                @endif
+                                <div class="text-center">
+                                    <p class="text-sm">Login or Register to have the Photogram experience</p>
+                                </div>
+                            @endauth
+                        @endif
                     </div>
-                    <p class="text-sm text-center mb-4">Login or Register to have the Photogram
-                        experience</p>
                 </div>
+
+
                 <div class="flex flex-col items-center">
                     <p class="text-sm text-gray-700 text-center">Daniel Perez - Crazy Imagine Software 2024</p>
                 </div>
@@ -48,7 +64,7 @@
         </div>
     </div>
     {{-- MOBILE SCREEN --}}
-    <div class="bg-black flex justify-center items-center">
+    <div class="bg-black flex justify-center items-center md:hidden">
         <div class="flex flex-col h-screen justify-center items-center px-4">
             <div class="bg-gray-200 w-full p-8 rounded-xl">
                 <div class="p-2 flex flex-col items-center mb-16" style="box-shadow: 0 3px 10px rgb(0,0,0,0.2);">
@@ -57,16 +73,30 @@
                     <h2 class="text-lg font-semibold mb-2 text-center">Photogram</h2>
                 </div>
                 <div class="flex flex-col items-center justify-center mb-16">
-                    <button
-                        class="border border-gray-700 w-44 bg-transparent hover:bg-gray-300 text-black font-bold py-3 px-5 rounded mb-2 transition-colors duration-300 ease-in-out">
-                        Login
-                    </button>
-                    <button
-                        class="border border-gray-700 w-44 bg-transparent hover:bg-gray-300 text-black font-bold py-3 px-5 rounded mb-2 transition-colors duration-300 ease-in-out">
-                        Register
-                    </button>
-                    <p class="text-sm text-center">Login or Register to have the Photogram
-                        experience</p>
+                    @if (Route::has('login'))
+                        @auth
+                            <a href="{{ url('/dashboard') }}"
+                                class="button border border-gray-700 w-44 bg-transparent hover:bg-gray-300 text-black font-bold py-3 px-5 rounded mb-2 transition-colors duration-300 ease-in-out flex justify-center">Dashboard</a>
+                            <div class="text-center">
+                                <p class="text-sm">You are already logged enter to join into the Photogram experience
+                                </p>
+                            </div>
+                        @else
+                            <a href="{{ route('login') }}"
+                                class="button border border-gray-700 w-44 bg-transparent hover:bg-gray-300 text-black font-bold py-3 px-5 rounded mb-2 transition-colors duration-300 ease-in-out flex justify-center">Log
+                                in</a>
+
+                            @if (Route::has('register'))
+                                <a href="{{ route('register') }}"
+                                    class="button border border-gray-700 w-44 bg-transparent hover:bg-gray-300 text-black font-bold py-3 px-5 rounded mb-2 transition-colors duration-300 ease-in-out flex justify-center">
+                                    Register
+                                </a>
+                            @endif
+                            <div class="text-center">
+                                <p class="text-sm">Login or Register to have the Photogram experience</p>
+                            </div>
+                        @endauth
+                    @endif
                 </div>
                 <div class="flex flex-col items-center">
                     <p class="text-sm text-gray-700 text-center">Daniel Perez - Crazy Imagine Software 2024</p>

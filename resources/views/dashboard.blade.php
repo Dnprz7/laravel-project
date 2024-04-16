@@ -1,8 +1,10 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Photogram') }}
-        </h2>
+        <a href="{{ route('dashboard') }}">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('Photogram') }}
+            </h2>
+        </a>
     </x-slot>
 
     <div class="py-12">
@@ -40,8 +42,8 @@
             {{-- PAGINATION --}}
             <div class="clearfix"></div>
 
-            <div class="pt-2 flex justify-center">
-                {{ $images->links() }}
+            <div class="mt-8 flex justify-center">
+                {{ $images->links('pagination::tailwind') }}
             </div>
         </div>
     </div>

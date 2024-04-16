@@ -3,38 +3,42 @@
     {{-- USER --}}
     <div id="user" class="pl-2 py-2 max-auto flex items-center  ">
 
-        {{-- <a href="{{ route('profile', ['id' => $image->user->id]) }}" class="flex items-center"> --}}
+        <a href="{{ route('profile', ['id' => $image->user->id]) }}" class="flex items-center">
 
-        @if ($image->user->image)
-            <div class="mr-1">
-                <img src="{{ route('profile.avatar', ['filename' => $image->user->image]) }}" alt="Profile Photo"
-                    class="h-8 w-8 rounded-full">
-            </div>
-        @else
-            <div x-show="defaultAvatarPreview" class="mr-1">
-                <img src="{{ asset('img/defaultprofile.png') }}" alt="Default Photo" class="h-8 w-8 rounded-full">
-            </div>
-        @endif
+            @if ($image->user->image)
+                <div class="mr-1">
+                    <img src="{{ route('profile.avatar', ['filename' => $image->user->image]) }}" alt="Profile Photo"
+                        class="h-8 w-8 rounded-full">
+                </div>
+            @else
+                <div x-show="defaultAvatarPreview" class="mr-1">
+                    <img src="{{ asset('img/defaultprofile.png') }}" alt="Default Photo" class="h-8 w-8 rounded-full">
+                </div>
+            @endif
 
-        <div>
-            {{ $image->user->name . ' ' . $image->user->surname }}
-        </div>
-        <p class="pl-2 text-sm text-gray-600">
-            {{ __('| @' . $image->user->nick) }}
-        </p>
-        {{-- </a> --}}
+            <div>
+                {{ $image->user->name . ' ' . $image->user->surname }}
+            </div>
+            <p class="pl-2 text-sm text-gray-600">
+                {{ __('| @' . $image->user->nick) }}
+            </p>
+        </a>
 
     </div>
 
     {{-- IMAGE --}}
     <div class="">
-        <img src="{{ route('image.file', ['filename' => $image->image_path]) }}" alt="Post" class="w-full shadow-md"
-            {{-- style="box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1)" --}}>
+        <img src="{{ route('image.file', ['filename' => $image->image_path]) }}" alt="Post"
+            class="w-full shadow-md">
     </div>
 
     {{-- DESCRIPTION --}}
     <div class="pl-2 pt-2">
-        <strong>{{ __('@' . $image->user->nick) }} </strong> {{ $image->description }}
+        <a href="{{ route('profile', ['id' => $image->user->id]) }}">
+
+            <strong>{{ __('@' . $image->user->nick) }} </strong>
+        </a>
+        <span>{{ $image->description }}</span>
     </div>
 
 

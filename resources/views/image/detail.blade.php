@@ -1,8 +1,10 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Photogram') }}
-        </h2>
+        <a href="{{ route('dashboard') }}">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('Photogram') }}
+            </h2>
+        </a>
     </x-slot>
 
     <div class="py-12">
@@ -38,34 +40,32 @@
                 </div>
             @endif
 
-            <div class="sm:rounded-lg bg-white shadow ">
+            <div class="sm:rounded-lg bg-white shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]">
 
                 {{-- USER --}}
-                <div class="pl-2 py-2 max-auto flex items-center bg-gray-200 ">
+                <div id="user" class="pl-2 py-2 max-auto flex items-center  ">
 
-                    {{-- <a href="{{ route('profile', ['id' => $image->user->id]) }}" class="flex items-center"> --}}
+                    <a href="{{ route('profile', ['id' => $image->user->id]) }}" class="flex items-center">
 
-                    @if ($image->user->image)
-                        <div class="mr-1">
-                            <img src="{{ route('profile.avatar', ['filename' => $image->user->image]) }}"
-                                alt="Profile Photo" class="h-8 w-8 rounded-full">
+                        @if ($image->user->image)
+                            <div class="mr-1">
+                                <img src="{{ route('profile.avatar', ['filename' => $image->user->image]) }}"
+                                    alt="Profile Photo" class="h-8 w-8 rounded-full">
+                            </div>
+                        @else
+                            <div x-show="defaultAvatarPreview" class="mr-1">
+                                <img src="{{ asset('img/defaultprofile.png') }}" alt="Default Photo"
+                                    class="h-8 w-8 rounded-full">
+                            </div>
+                        @endif
+
+                        <div>
+                            {{ $image->user->name . ' ' . $image->user->surname }}
                         </div>
-                    @else
-                        <div x-show="defaultAvatarPreview" class="mr-1">
-                            <img src="{{ asset('img/defaultprofile.png') }}" alt="Default Photo"
-                                class="h-8 w-8 rounded-full">
-                        </div>
-                    @endif
-
-                    <div>
-                        {{ $image->user->name . ' ' . $image->user->surname }}
-                    </div>
-                    <p class="pl-2 text-sm text-gray-600">
-                        {{ __('@' . $image->user->nick) }}
-                    </p>
-                    {{-- </a> --}}
-
-
+                        <p class="pl-2 text-sm text-gray-600">
+                            {{ __('| @' . $image->user->nick) }}
+                        </p>
+                    </a>
                 </div>
 
                 {{-- IMAGE --}}
@@ -76,7 +76,11 @@
 
                 {{-- DESCRIPTION --}}
                 <div class="pl-2 pt-2">
-                    <strong>{{ __('@' . $image->user->nick) }} </strong> {{ $image->description }}
+                    <a href="{{ route('profile', ['id' => $image->user->id]) }}">
+
+                        <strong>{{ __('@' . $image->user->nick) }} </strong>
+                    </a>
+                    <span>{{ $image->description }}</span>
                 </div>
 
                 {{-- BUTTON EDIT AND DELETE --}}

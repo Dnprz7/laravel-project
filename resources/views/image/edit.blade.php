@@ -1,8 +1,10 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Create a Post') }}
-        </h2>
+        <a href="{{ route('dashboard') }}">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('Photogram') }}
+            </h2>
+        </a>
     </x-slot>
 
     <div class="py-12">
@@ -65,6 +67,14 @@
                                     </span>
                                 @endif
                             </div>
+
+                            <div class="flex flex-col">
+                                <x-input-label for="tag" :value="__('Edit your tag from your photo so people can search it')" />
+                                <x-text-input id="tag" name="tag" type="text" class="mt-1 block w-full"
+                                    value="{{ $image->tag }}" />
+                                <x-input-error class="mt-2" :messages="$errors->get('tag')" />
+                            </div>
+
 
                             <div class="flex items-center gap-4">
                                 <x-primary-button>{{ __('Update') }}</x-primary-button>
