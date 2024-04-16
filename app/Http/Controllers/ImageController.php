@@ -70,6 +70,7 @@ class ImageController extends Controller
         $image = Image::find($id);
         $comments = Comment::where('image_id', $id)->get();
         $likes = Like::where('image_id', $id)->get();
+        $dislikes = Dislike::where('image_id', $id)->get();
 
         if ($user && $image && $image->user->id == $user->id) {
             //DELETE COMMENT
@@ -86,12 +87,12 @@ class ImageController extends Controller
                 }
             }
 
-            //DELETE DISLIKES
-            // if ($dislikes && count($dislikes) > 0) {
-            //     foreach ($dislikes as $dislike) {
-            //         $dislike->delete();
-            //     }
-            // }
+            // DELETE DISLIKES
+            if ($dislikes && count($dislikes) > 0) {
+                foreach ($dislikes as $dislike) {
+                    $dislike->delete();
+                }
+            }
 
             //DELETE IMAGES ON STORAGE
             Storage::disk('images')->delete($image->image_path);

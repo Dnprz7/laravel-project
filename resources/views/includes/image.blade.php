@@ -1,7 +1,7 @@
-<div id="timeLine" class="sm:rounded-lg bg-white shadow ">
+<div id="timeLine" class="sm:rounded-lg bg-white shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]">
 
     {{-- USER --}}
-    <div id="user" class="pl-2 py-2 max-auto flex items-center bg-gray-200 ">
+    <div id="user" class="pl-2 py-2 max-auto flex items-center  ">
 
         {{-- <a href="{{ route('profile', ['id' => $image->user->id]) }}" class="flex items-center"> --}}
 
@@ -20,7 +20,7 @@
             {{ $image->user->name . ' ' . $image->user->surname }}
         </div>
         <p class="pl-2 text-sm text-gray-600">
-            {{ __('@' . $image->user->nick) }}
+            {{ __('| @' . $image->user->nick) }}
         </p>
         {{-- </a> --}}
 
@@ -28,8 +28,8 @@
 
     {{-- IMAGE --}}
     <div class="">
-        <img src="{{ route('image.file', ['filename' => $image->image_path]) }}" alt="Post" class="w-full"
-            style="box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1)">
+        <img src="{{ route('image.file', ['filename' => $image->image_path]) }}" alt="Post" class="w-full shadow-md"
+            {{-- style="box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1)" --}}>
     </div>
 
     {{-- DESCRIPTION --}}
