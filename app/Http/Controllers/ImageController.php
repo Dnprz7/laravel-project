@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Image;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
@@ -13,6 +11,8 @@ use Illuminate\Http\Response;
 use App\Models\Comment;
 use App\Models\Like;
 use App\Models\Dislike;
+use App\Models\Image;
+use App\Models\User;
 
 class ImageController extends Controller
 {

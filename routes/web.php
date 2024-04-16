@@ -23,7 +23,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/profile', [ProfileController::class, 'updatePhoto'])->name('profile.updatePhoto');
     Route::get('/profile/avatar/{filename}', [ProfileController::class, 'getImage'])->name('profile.avatar');
     Route::get('/profile/{id}', [ProfileController::class, 'profile'])->name('profile');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::delete('/profile/delete/{id}', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/upload_image', [ImageController::class, 'create'])->name('image.create');
     Route::post('/image/save', [ImageController::class, 'save'])->name('image.save');
