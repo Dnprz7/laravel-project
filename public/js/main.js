@@ -147,4 +147,25 @@ $(document).ready(function () {
         $("#search-results-info").html(`Seen results from: ${searchQuery}`);
         window.location.href = newUrl;
     });
+
+    //PAGINATION
+    const paginationLinks = document.querySelectorAll(".pagination a");
+
+    paginationLinks.forEach((link) => {
+        link.addEventListener("click", function (e) {
+            e.preventDefault();
+            const pageUrl = new URL(this.href);
+
+            // Obtener los valores de búsqueda y filtro de los controles del formulario
+            const search = document.getElementById("search").value;
+            const sortBy = document.getElementById("sort_by").value;
+
+            // Establecer los parámetros de búsqueda y filtro en la URL de la página
+            pageUrl.searchParams.set("search", search);
+            pageUrl.searchParams.set("sort_by", sortBy);
+
+            // Redirigir a la nueva URL
+            window.location.href = pageUrl.href;
+        });
+    });
 });

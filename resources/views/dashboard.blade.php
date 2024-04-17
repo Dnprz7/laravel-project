@@ -10,18 +10,32 @@
     <div class="py-12">
         <div class="max-w-3xl mx-auto sm:px-6 lg:px-8 space-y-6">
 
-            <form method="get" action="{{ route('dashboard', ['sort_by' => '']) }}">
-                @csrf
-                <select name="sort_by">
-                    <option value="default" selected>- Selection -</option>
-                    <option value="likes">Most popular</option>
-                    <option value="dislikes">Less popular</option>
-                    <option value="comments">Most comments</option>
-                    <option value="recent">Recent</option>
-                    <option value="oldest">Old</option>
-                </select>
-                <button type="submit">Filter</button>
-            </form>
+            <div class="p-2 sm:p-4 shadow sm:rounded-lg inline-flex">
+                <form id="search-form" method="get" action="{{ route('dashboard') }}">
+                    @csrf
+                    <div class="row">
+                        <div class="form-group col">
+                            <input type="text" name="search" id="search" class="form-control"
+                                value="{{ $search }}" placeholder="Tag" />
+                        </div>
+                        <div class="form-group col pt-1">
+                            <select name="sort_by" class="form-control w-full">
+                                <option value="default" {{ $sortBy == 'default' ? 'selected' : '' }}>- Filter -</option>
+                                <option value="likes" {{ $sortBy == 'likes' ? 'selected' : '' }}>Most popular</option>
+                                <option value="dislikes" {{ $sortBy == 'dislikes' ? 'selected' : '' }}>Less popular
+                                </option>
+                                <option value="comments" {{ $sortBy == 'comments' ? 'selected' : '' }}>Most comments
+                                </option>
+                                <option value="recent" {{ $sortBy == 'recent' ? 'selected' : '' }}>Recent</option>
+                                <option value="oldest" {{ $sortBy == 'oldest' ? 'selected' : '' }}>Oldest</option>
+                            </select>
+                        </div>
+                        <div class="form-group col pt-2">
+                            <x-secondary-button type="submit">Search</x-secondary-button>
+                        </div>
+                    </div>
+                </form>
+            </div>
 
             @if (session('status') === 'post-created')
                 <div class="max-w-xl flex items-center">
@@ -52,11 +66,11 @@
                 @include('includes.image', ['image' => $image])
             @endforeach
 
-            {{-- PAGINATION
+            {{-- PAGINATION --}}
             <div class="clearfix"></div>
             <div class="mt-8 flex justify-center">
                 {{ $images->links('pagination::tailwind') }}
-            </div> --}}
+            </div>
         </div>
     </div>
 

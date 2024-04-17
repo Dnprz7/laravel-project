@@ -14,7 +14,7 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('/dashboard/{sort_by?}', [DashboardController::class, 'index'])->middleware(['verified'])->name('dashboard');
+    Route::get('/dashboard/{search?}/{sort_by?}', [DashboardController::class, 'index'])->middleware(['verified'])->name('dashboard');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -31,7 +31,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/image/delete/{id}', [ImageController::class, 'delete'])->name('image.delete');
     Route::get('/image/edit/{id}', [ImageController::class, 'edit'])->name('image.edit');
     Route::post('/image/update', [ImageController::class, 'update'])->name('image.update');
-    Route::get('/images/{search?}', [ImageController::class, 'finder'])->name('images');
 
     Route::post('/comment/save', [CommentController::class, 'save'])->middleware(['verified'])->name('comment.save');
     Route::get('/comment/delete/{id}', [CommentController::class, 'delete'])->middleware(['verified'])->name('comment.delete');
