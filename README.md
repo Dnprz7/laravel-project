@@ -30,18 +30,19 @@ Please note that this project was made and executed with xampp for the database 
     And put there the images in the file “example_images”
 
 3.	Please change the file .env
-    .env.example
 
-    With the code in the text file replace.env.txt. Then rename the file for “.env”
+  	.env.example
+
+  	With the code in the text file replace.env.txt. Then rename the file for “.env”
 
 
-4.	Run the migrations and seeders
+6.	Run the migrations and seeders
 
   	php artisan migrate
 
   	php artisan db:seed
 
-6.	Run the servers
+7.	Run the servers
 
     php artisan serve
 
