@@ -69,11 +69,10 @@
             {{-- PAGINATION --}}
             <div class="clearfix"></div>
             <div class="mt-8 flex justify-center">
-                {{ $images->links('pagination::tailwind') }}
+                {{ $images->appends(request()->input())->links('pagination::tailwind') }}
             </div>
         </div>
     </div>
-
 
 
 </x-app-layout>
