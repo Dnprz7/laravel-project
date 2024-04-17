@@ -36,14 +36,19 @@ Please note that this project was made and executed with xampp for the database 
 
 
 4.	Run the migrations and seeders
-    php artisan migrate
-    php artisan db:seed
 
-5.	Run the servers
+  	php artisan migrate
+
+  	php artisan db:seed
+
+6.	Run the servers
+
     php artisan serve
-    In another terminal run
-    npm run dev
 
-6.	Now you are ready to view the project, if you have any issues do not hesitate to contact me by email - ddaprr@gmail.com.
+  	In another terminal run
+
+  	npm run dev
+
+9.	Now you are ready to view the project, if you have any issues do not hesitate to contact me by email - ddaprr@gmail.com.
 
 
