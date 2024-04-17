@@ -33,7 +33,9 @@ Please note that this project was made and executed with xampp for the database 
 
   	.env.example
 
-  	With the code in the text file replace.env.txt. Then rename the file for “.env”
+  	With the code in the text file named " .env.txt "
+
+  	Then rename the file for “.env”
 
 
 6.	Run the migrations and seeders
