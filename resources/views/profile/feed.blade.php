@@ -13,8 +13,13 @@
             <div class="sm:rounded-lg flex items-center">
 
                 @if ($user->image)
-                    <div x-show="avatarPreview">
-                        <img src="{{ route('profile.avatar', ['filename' => $user->image]) }}" alt="Current Photo"
+                    <div class="mr-1">
+                        <img src="{{ route('profile.avatar', ['filename' => $user->image]) }}" alt="Profile Photo"
+                            class="max-w-40  rounded-full">
+                    </div>
+                @else
+                    <div x-show="defaultAvatarPreview" class="mr-1">
+                        <img src="{{ asset('img/defaultprofile.png') }}" alt="Default Photo"
                             class="max-w-40  rounded-full">
                     </div>
                 @endif

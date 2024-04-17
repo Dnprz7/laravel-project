@@ -40,7 +40,6 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/dislikes', [DislikeController::class, 'index'])->name('dislike.index');
     Route::get('/toggle_dislike/{id}', [DislikeController::class, 'toggle_dislike'])->name('toggle_dislike.save');
-
 });
 
 require __DIR__ . '/auth.php';
