@@ -57,7 +57,7 @@
 
                             <div class="flex flex-col">
 
-                                <x-input-label for="tag" :value="__('Add a tag to for your photo so people can search it')" />
+                                <x-input-label for="tag" :value="__('Add a tag to your photo so people can search it')" />
                                 <x-text-input id="tag" name="tag" type="text" class="mt-1 block w-full" />
                                 <x-input-error class="mt-2" :messages="$errors->get('tag')" />
                             </div>

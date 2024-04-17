@@ -12,12 +12,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    $controller = new DashboardController();
-    return $controller->index();
-})->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::middleware('auth')->group(function () {
+
+    Route::get('/dashboard/{sort_by?}', [DashboardController::class, 'index'])->middleware(['verified'])->name('dashboard');
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::post('/profile', [ProfileController::class, 'updatePhoto'])->name('profile.updatePhoto');
